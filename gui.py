@@ -23,11 +23,11 @@ window = sg.Window('My To-Do App',
                    font=('Helvetica', 20))
 pls2e = 0
 while True:
-    event, values = window.read(timeout=10)
+    event, values = window.read(timeout=1000)
     window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
     if pls2e == 1:
         window['text_under'].update(value="")
-        pls2e = pls2e - 1
+        pls2e = 0
     match event:
         case "Add":
             todos = functions.get_todos()
@@ -48,7 +48,7 @@ while True:
             except IndexError:
                 window['text_under'].update(value="Please select a todo to edit.", font=("Helvetica", 20))
                 if pls2e == 0:
-                    pls2e = pls2e + 1
+                    pls2e = 1
 
 
         case 'todos':
